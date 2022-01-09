@@ -115,7 +115,7 @@ def hazirlik():
      browser=webdriver.Firefox(options=Options, executable_path='geckodriver.exe')
         
      print("Importlar Yapıldı.......")
-     browser.get("https://atlas/maximo/webclient/login/login.jsp?appservauth=true")
+     browser.get("")
      print("Site girişi Yapıldı.......")
 
      time.sleep(20)
