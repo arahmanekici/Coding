@@ -1,0 +1,966 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jan  4 22:50:44 2022
+
+@author: abdurrahman.ekici
+"""
+
+
+
+
+#Netflix type system demo - FakeFlix
+
+import csv
+import sys
+import datetime
+from selenium import webdriver
+import time
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.options import Options
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import ElementNotInteractableException
+
+
+#GOSTERGESIZ
+
+#Options = Options()
+#Options.headless =   True
+#browser=webdriver.Firefox(options=Options, executable_path='geckodriver.exe')
+
+#GOSTERGELİ
+
+browser=webdriver.Firefox()
+
+
+print("""
+[H]=======================================
+|                                        |
+|   █░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀      |
+|   ▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄      |
+|                                        |
+|   ATLAS INCIDENT OTOMASYON PROGRAMI    |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|       ABDURRAHMAN EKICI                |
+|========================================|
+""")
+
+
+
+
+def menu():
+    print("************ Welcome to ATLAS INCIDENT SOLVING PROGRAM **************")
+    print()
+
+    choice = input("""
+                      A: INPROGRESS
+                      B: CLEAR
+                      C: WAITING
+                      D: INPROG+CLEAR
+                      E: TUM
+                      T: WAIT-CLEAR
+                      F: EXIT
+                     
+                      Please enter your choice: """)
+
+    if choice == "A" or choice =="a":
+        giris_yap()
+        inprog()
+        success()      
+        menu()
+    elif choice == "B" or choice =="b":
+        giris_yap()
+        clear()
+        success()
+        menu()
+    elif choice=="C" or choice=="c":
+        giris_yap()
+        waiting()
+        success()   
+        menu()
+    elif choice=="D" or choice=="d":
+        giris_yap()
+        inprog()
+        incident_sayfasi()
+        clear()   
+        success()   
+        menu()
+    elif choice=="E" or choice=="e":
+        giris_yap()
+        inprog()
+        incident_sayfasi()
+        clear()
+        incident_sayfasi()
+        waiting()
+        success()   
+        menu()
+    elif choice=="t" or choice=="T":           
+        giris_yap()
+        waitclear()
+        success()   
+        menu()
+        
+    elif choice=="F" or choice=="f":           
+        sys.exit
+        
+        
+    else:
+        print("You must only select either A,B,C,D,E or F")
+        print("Please try again")
+        menu()
+        
+def giris_yap():
+    
+    print(" ﷽")
+    print("Giriş Yapma Başladı",'\n')
+
+
+            
+    print("Importlar Yapıldı.......")
+
+    browser.get("")
+    print("Site girişi Yapıldı.......")
+
+    time.sleep(5)
+
+    print("Bekle........")
+    
+    
+    kimsin = input("""
+                      A: BIR DOST...
+                      B: ABDURRAHMAN
+                      
+                     
+                      Please enter your choice: """)
+                      
+    if kimsin=='A' or kimsin=='a':
+        
+        user_name= input("username:")
+        print("Username girlidi",'\n')
+        
+        password_name=input ("Password:")
+        print("Password girildi",'n')
+        
+    elif kimsin=='B' or kimsin=='b':
+        
+        user_name= ('')
+        print("username alındı",'\n')
+        password_name=("")
+        print("password alındı",'\n')
+        
+    username=browser.find_element_by_name("j_username")		#Username gir
+    username.click()
+    username.send_keys(user_name)
+    print("Kullanıcı Adıgirildi....................")
+
+    password=browser.find_element_by_name("j_password")		#Password gir
+    password.click()
+    password.send_keys(password_name)
+
+    print("Şifre girildi..........")
+
+    giris_yap=browser.find_element_by_xpath("/html/body/div/div/div/form/button/span")		#Girişe Tıkla
+    giris_yap.click()
+
+    print("Giriş Yap Butonuna Tıklandı",'\n')
+    print("10 saniye bekle",'\n','\n')
+    time.sleep(10)
+    
+def incident_sayfasi():
+    
+    print("Incident Ana Sayfası Birinci Döngüye Giriliyor...",'\n','n')
+    print("15 saniye bekleyiniz",'\n')
+    time.sleep(15)
+    
+    e=0
+    while e==0:
+        try:
+            ev_resmi=browser.find_element_by_xpath("//*[@id='titlebar-tb_homeButton']")
+            ev_resmi.click()
+            time.sleep(2)
+            print("Incident Ana Sayfaya Girildi",'\n')
+            e=2
+        except (NoSuchElementException, ElementNotInteractableException):
+            print("ATLAS YAVAŞ 3 SANIYE BEKLEME UZADI")           
+            time.sleep(3)
+        else:
+     
+            print("Doğrulama Döngüsü Hatasız Sona Erdi")
+  
+    print("Birinci Döngüden Çıkıldı")
+    
+    
+def inprog():
+      
+   #ATLAS ANAMENUYE KADARKI ORTAK ALANDIR////////////////////////////////////////////////
+   
+   print("Birinci Döngüye Giriliyor...",'\n','\n')
+   
+   print("Birinci Döngüye Giriliyor...",'\n','n')
+   L=9
+   while L==9:
+       try:
+           network_inc=browser.find_element_by_xpath("//*[@id='m1e20cba1-sct_anchor_6']")                          
+           network_inc.click()
+           time.sleep(7)
+           print("Atanmış Kayıtlara Başarı ile Girildi",'\n')
+           L=30
+       except NoSuchElementException:
+               print("ATLAS YAVAŞ 2 SANIYE BEKLEME UZADI")
+               
+               time.sleep(2)
+               
+       else:
+    
+               print("Doğrulama Döngüsü Hatasız Sona Erdi")
+ 
+   print("Birinci Döngüden Çıkıldı")
+
+   print("network incidentlara tıklandı")
+
+
+   #ATLAS NETWORK INCIDENT KADARKI ORTAK ALANDIR///////////////////
+
+   print("45 saniye bekle")
+   
+   #Sigorta Koydum 45 saniyeye gerek kalmadı!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   print("İkinci Döngüye Giriliyor...",'\n','n')
+   
+   O=9
+   while O==9:
+       try:
+           atanmis_kay=browser.find_element_by_xpath("//*[@id='m6f7bb320-img4']")     
+           
+           atanmis_kay.click()
+           time.sleep(7)
+           print("Atanmış Kayıtlara Başarı ile Girildi",'\n')
+           O=30
+       except NoSuchElementException:
+               print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+               
+               
+               time.sleep(5)
+       else:
+    
+               print("Doğrulama Döngüsü Hatasız Sona Erdi")
+ 
+   print("İkinci Döngüden Çıkıldı",'\n')
+
+   
+
+   print("45 saniye beklendi")
+
+   #////////////////////////////////////////// OKEY BE SONUNDA			
+
+                                               
+   time.sleep(20)
+       
+   
+
+   print("atanmış kayıtlar açıldı")
+   
+   print("30 saniye bekle")
+
+
+   #SIGORTA KOYULDU 30 SANIYE SILINDI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   print("Üçüncü Döngüye Giriliyor...",'\n','n')
+   #////////////////////////////////////////// OKEY	ELHAMDULILLAH
+
+   T=9
+   while T==9:
+       try:
+           kayit_sec=browser.find_element_by_xpath("//*[@id='m6a7dfd2f_tbod_ttselrows-ti']")
+           kayit_sec=browser.find_element_by_xpath("//*[@id='m6a7dfd2f_tbod_ttselrows-ti']")
+           kayit_sec.click()
+           time.sleep(5)
+           print("Atanmış Kayıtlara Başarı ile Girildi",'\n')
+           T=30
+       except NoSuchElementException:
+               print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+                              
+               time.sleep(5)
+       else:
+    
+               print("Doğrulama Döngüsü Hatasız Sona Erdi")
+               
+ 
+   print("Üçüncü Döngüden Çıkıldı")
+   
+
+   
+   print("Dördüncü Döngüye Giriliyor...",'\n','n')
+
+   #SIGORTA KONULDU SLEEP(20) SILINDI!!!!!!!!!!!!!!!!!!!!!!!!!
+   M=9
+   while M==9:
+       try:
+           tum_sec=browser.find_element_by_xpath("//*[@id='m6a7dfd2f_ttrow_[C:0]_ttselallrows-ti_img']")
+           print("tümmünü seç butonu belirlendi")
+           tum_sec.click()
+           print("tümmünü seç butonu tıklandı",'\n')
+           time.sleep(2)
+           print("Atanmış Kayıtlara Başarı ile Girildi",'\n')
+           M=30
+       except NoSuchElementException:
+               print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+               
+               
+               time.sleep(5)
+       else:
+    
+               print("Doğrulama Döngüsü Hatasız Sona Erdi")                                           
+   	
+   print("Dördüncü Döngüden Çıkıldı...",'\n','n')
+
+   
+
+   
+
+
+   
+
+   time.sleep(15)
+
+   print("Oyun devam ediyor",'\n')
+
+
+   action=ActionChains(browser)
+
+   action.key_down(Keys.CONTROL).key_down(Keys.ALT).send_keys('X').key_up(Keys.CONTROL).key_up(Keys.ALT).perform()
+   #action=ActionChains(driver) yazarak devamlı uzun uzun yazmanın önüne geçilebilir
+
+   print("Tuşlara basıldı......")
+   
+   print("INPROGRESS E ALMA ISLEMI BAŞARIYLA TAMAMLANDI",'\n')
+
+  
+   
+          
+       
+def clear():
+  
+    #ATLAS ANAMENUYE KADARKI ORTAK ALANDIR////////////////////////////////////////////////
+
+
+    vv=9
+    while vv==9:
+        try:
+            network_inc=browser.find_element_by_xpath("//*[@id='m1e20cba1-sct_anchor_6']")                          
+            network_inc.click()
+
+            print("network incidentlara tıklandı")
+            time.sleep(5)
+            print("Incident Ana Sayfaya Girildi",'\n')
+            vv=30
+        except (NoSuchElementException, ElementNotInteractableException):
+                print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+                
+                
+                time.sleep(5)
+        else:
+     
+                print("Doğrulama Döngüsü-1 Hatasız Sona Erdi")
+  
+    print("Birinci Döngüden Çıkıldı")
+    
+    
+
+
+    #ATLAS NETWORK INCIDENT KADARKI ORTAK ALANDIR////////////////////////////////////////////////
+    print("25 saniye bekle")
+    time.sleep(25)
+    vvv=9
+    while vvv==9:
+        try:
+            network_inc=browser.find_element_by_xpath("//*[@id='m1e20cba1-sct_anchor_6']")                          
+            network_inc.click()
+
+            print("network incidentlara tıklandı")
+            time.sleep(2)
+            print("Incident Ana Sayfaya Girildi",'\n')
+            vvv=30
+        except (NoSuchElementException, ElementNotInteractableException):
+                print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+                
+                
+                time.sleep(5)
+        else:
+     
+                print("Doğrulama Döngüsü-2 Hatasız Sona Erdi")
+  
+    print("Birinci Döngüden Çıkıldı")
+
+   
+
+
+    print("WAITINGE ALMA BAŞLANGICI")
+
+
+    devam_kay=browser.find_element_by_xpath("//*[@id='m8175d20c-img4']")
+    devam_kay.click()
+
+    print("DEVAM EDEN KAYITLAR AÇILDI...........")
+
+    print("30 saniye bekle")
+
+
+    time.sleep(30)
+    vb=9
+    while vb==9:
+        try:
+            clear_box=browser.find_element_by_id("m6a7dfd2f_tfrow_[C:1]_txt-tb")
+            clear_box.click()
+            time.sleep(2)
+            print("Devam eden kayıtlar Girildi",'\n')
+            vb=30
+        except (NoSuchElementException, ElementNotInteractableException):
+                print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+                
+                
+                time.sleep(5)
+        else:
+     
+                print("Doğrulama Döngüsü-3 Hatasız Sona Erdi")
+  
+       
+    print("Doğrulama Döngüsü-3 Hatasız Sona Erdi")
+    clear_box.send_keys("Y")
+
+    print("YES YAZILDI")
+
+    clear_box.send_keys(Keys.ENTER)
+
+    print("ENTERE BASILDI")
+    #ENTER ÇALIŞIYOR
+
+
+    time.sleep(15)
+
+
+
+
+    
+    vc=9
+    while vc==9:
+        try:
+            kayit_sec=browser.find_element_by_xpath("//*[@id='m6a7dfd2f_tbod_ttselrows-ti']")
+            kayit_sec.click()
+            print("Kayıt Seçildi")
+
+            time.sleep(2)
+            print("Devam eden kayıtlar Girildi",'\n')
+            vc=30
+        except (NoSuchElementException, ElementNotInteractableException):
+                print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+                
+                
+                time.sleep(5)
+        else:
+     
+                print("Doğrulama Döngüsü-4 Hatasız Sona Erdi")
+  
+    print("Doğrulama Döngüsü-4 Hatasız Sona Erdi")
+    
+
+    print("30 saniye bekleyiniz")                                             
+    time.sleep(30)
+    vx=9
+    while vx==9:
+        try:
+            tum_sec= browser.find_element_by_xpath("//*[@id='m6a7dfd2f_ttrow_[C:0]_ttselallrows-ti_img']")                                           
+            tum_sec.click()
+            print("Kayıt Seçildi- Döngü 5")
+
+            time.sleep(2)
+            vx=30
+        except (NoSuchElementException, ElementNotInteractableException):
+                print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+                
+                
+                time.sleep(5)
+        else:
+     
+                print("Doğrulama Döngüsü-4 Hatasız Sona Erdi")
+
+                   
+    print("Doğrulama Döngüsü-5 Hatasız Sona Erdi")
+    
+
+    print("Tümü Seçildi")
+                                               
+    time.sleep(20)
+
+    
+    ActionChains(browser).key_down(Keys.CONTROL).key_down(Keys.ALT).send_keys('M').key_up(Keys.CONTROL).key_up(Keys.ALT).perform()
+    print("Tuş Kombinasyonu yapıldı")
+                                               
+
+def waitclear():
+  
+   
+    time.sleep(10)
+    zz=9
+    while zz==9:
+        try:
+            network_inc=browser.find_element_by_xpath("//*[@id='m1e20cba1-sct_anchor_6']")                          
+            network_inc.click()
+
+            print("network incidentlara tıklandı")
+            time.sleep(2)
+            print("Incident Ana Sayfaya Girildi",'\n')
+            zz=30
+        except (NoSuchElementException, ElementNotInteractableException):
+                print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+                
+                
+                time.sleep()
+        else:
+     
+                print("Doğrulama Döngüsü Hatasız Sona Erdi")
+  
+    print("Birinci Döngüden Çıkıldı")#ATLAS ANAMENUYE KADARKI ORTAK ALANDIR////////////////////////////////////////////////
+
+    
+    #ATLAS NETWORK INCIDENT KADARKI ORTAK ALANDIR////////////////////////////////////////////////
+
+    print("45 saniye bekle")
+
+
+    time.sleep(10)
+
+    print("45 saniye beklendi")
+
+    #////////////////////////////////////////// OKEY BE SONUNDA			
+    zzz=9
+    while zzz==9:
+        try:
+            devam_kay=browser.find_element_by_xpath("//*[@id='m8175d20c-img4']")
+            devam_kay.click()
+
+            print("network incidentlara tıklandı")
+            time.sleep(2)
+            print("Incident Ana Sayfaya Girildi",'\n')
+            zzz=30
+        except (NoSuchElementException, ElementNotInteractableException):
+                print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+                
+                
+                time.sleep(5)
+        else:
+     
+                print("Doğrulama Döngüsü Hatasız Sona Erdi")
+    
+
+    
+
+    print("DEVAM EDEN KAYITLAR AÇILDI...........")
+
+    print("30 saniye bekle")
+
+    time.sleep(30)
+    
+    
+    #ARA BUTONU
+
+    
+    buton_bas=browser.find_element_by_xpath("//*[@id='quicksearchQSImage']")
+    buton_bas.click()
+    time.sleep(3)
+
+    
+    status_box=browser.find_element_by_xpath("//*[@id='m7a5b32fc-tb']")
+    status_box.click()
+    status_box.send_keys('WAITING')
+    print("WAITING")
+
+    bolge_box=browser.find_element_by_xpath("//*[@id='m8c44d12c-tb']")
+    bolge_box.click()
+    bolge_box.send_keys('ANKARA')
+    print("ANKARA")
+
+
+
+    atanmis_box=browser.find_element_by_xpath("//*[@id='m86c7b7bb-tb']")
+    atanmis_box.click()
+    atanmis_box.send_keys('RF')
+    print("RF")
+
+
+    history_box=browser.find_element_by_xpath("//*[@id='m9b5121d-tb']")
+    history_box.click()
+    ActionChains(browser).send_keys(Keys.DELETE).perform()
+    print("HISTORY FLAG SILINDI")
+
+
+
+    find_buton= browser.find_element_by_id("maa8a5ebf-pb")
+    find_buton.click()
+    time.sleep(20)
+    print("ARANIYOR..........20 SANIYE BEKLEYINIZ.......",'\n')
+    
+    zzzz=9
+    while zzzz==9:
+        try:
+            clear_box=browser.find_element_by_id("m6a7dfd2f_tfrow_[C:1]_txt-tb")
+            clear_box.click()
+            clear_box.send_keys("Y")
+            print("YES YAZILDI")
+            time.sleep(2)
+            print("Incident Ana Sayfaya Girildi",'\n')
+            zzzz=30
+        except (NoSuchElementException, ElementNotInteractableException):
+                print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+                
+                
+                time.sleep(5)
+        else:
+     
+                print("Doğrulama Döngüsü Hatasız Sona Erdi")
+    
+
+    
+
+    clear_box.send_keys(Keys.ENTER)
+
+    print("ENTERE BASILDI")
+   #ENTER ÇALIŞIYOR
+
+    print("15 SANIYE BEKLEYIN")
+    time.sleep(15)
+
+
+
+
+
+
+
+    kayit_sec=browser.find_element_by_xpath("//*[@id='m6a7dfd2f_tbod_ttselrows-ti']")
+    kayit_sec.click()
+
+    print("Kayıt Seçildi")
+
+                                               
+    time.sleep(15)
+
+
+
+
+
+
+    tum_sec= browser.find_element_by_xpath("//*[@id='m6a7dfd2f_ttrow_[C:0]_ttselallrows-ti_img']")                                           
+    tum_sec.click()
+
+    print("Tümü Seçildi")
+                                               
+    time.sleep(15)
+
+
+    ActionChains(browser).key_down(Keys.CONTROL).key_down(Keys.ALT).send_keys('M').key_up(Keys.CONTROL).key_up(Keys.ALT).perform()
+    print("Tuş Kombinasyonu yapıldı")
+                                               
+   
+def waiting():
+
+   
+   #ATLAS ANAMENUYE KADARKI ORTAK ALANDIR////////////////////////////////////////////////
+
+
+
+
+   network_inc=browser.find_element_by_xpath("//*[@id='m1e20cba1-sct_anchor_6']")                       
+   network_inc.click()
+
+   print("network incidentlara tıklandı")
+
+
+
+
+   #ATLAS NETWORK INCIDENT KADARKI ORTAK ALANDIR////////////////////////////////////////////////
+
+   print("10 saniye bekle")
+
+
+   time.sleep(10)
+
+   cc=9
+   while cc==9:
+       try:
+           devam_kay=browser.find_element_by_xpath("//*[@id='m8175d20c-img4']")
+           devam_kay.click()
+           time.sleep(2)
+           print("Devam eden kayıtlar",'\n')
+           cc=30
+       except (NoSuchElementException, ElementNotInteractableException):
+               print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+               
+               
+               time.sleep(5)
+       else:
+    
+               print("Doğrulama Döngüsü Hatasız Sona Erdi")
+
+
+   print("WAITINGE ALMA BAŞLANGICI")
+
+
+   
+
+
+   print("30 saniye bekle")
+
+
+   time.sleep(10)
+
+   ccc=9
+   while ccc==9:
+       try:
+           buton_bas=browser.find_element_by_xpath("//*[@id='quicksearchQSImage']")
+           buton_bas.click()
+
+
+           time.sleep(2)
+           print("Devam eden kayıtlar",'\n')
+           ccc=30
+       except (NoSuchElementException, ElementNotInteractableException):
+               print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+               
+               
+               time.sleep(5)
+       else:
+    
+               print("Doğrulama Döngüsü Hatasız Sona Erdi")
+
+
+   print("WAITINGE ALMA BAŞLANGICI")
+
+
+   
+
+
+   print("30 saniye bekle")
+
+
+
+   #ATLAS NETWORK INCIDENT KADARKI ORTAK ALANDIR////////////////////////////////////////////////
+
+
+    
+   #ARA BUTONU
+
+   
+
+
+   bugün = datetime.datetime.today()
+   print(bugün)
+
+   fark_son = datetime.timedelta(days=1)
+   fark_bas= datetime.timedelta(days=30)
+
+   gecmis_son = bugün - fark_son
+   gecmis_bas= bugün - fark_bas
+
+   gecmis_son=datetime.datetime.strftime(gecmis_son, '%d.%m.%Y 00:00:00')
+   print(gecmis_son)
+
+   #('%d.%m.%Y %H:%M:%S')
+
+
+   gecmis_bas=datetime.datetime.strftime(gecmis_bas, '%d.%m.%Y 00:00:00')
+   print(gecmis_bas)
+
+   time.sleep(3)
+
+   tarih_bas=browser.find_element_by_xpath("//*[@id='m6cb14077-tb']")
+   tarih_bas.click()
+   #tarih_bas.send_keys=('12.11.2021 01:27:03')
+   ActionChains(browser).send_keys(gecmis_bas).perform()
+   print(gecmis_bas)
+
+
+
+
+
+   tarih_son=browser.find_element_by_xpath("//*[@id='mf764f4b7-tb']")
+   tarih_son.click()
+   tarih_son.send_keys=(gecmis_son)
+   ActionChains(browser).send_keys(gecmis_son).perform()
+   print(gecmis_son)
+
+
+
+   status_box=browser.find_element_by_xpath("//*[@id='m7a5b32fc-tb']")
+   status_box.click()
+   status_box.send_keys('INPROG')
+   print("INPROG")
+
+   bolge_box=browser.find_element_by_xpath("//*[@id='m8c44d12c-tb']")
+   bolge_box.click()
+   bolge_box.send_keys('ANKARA')
+   print("ANKARA")
+
+
+
+   atanmis_box=browser.find_element_by_xpath("//*[@id='m86c7b7bb-tb']")
+   atanmis_box.click()
+   atanmis_box.send_keys('RF')
+   print("RF")
+
+
+   history_box=browser.find_element_by_xpath("//*[@id='m9b5121d-tb']")
+   history_box.click()
+   ActionChains(browser).send_keys(Keys.DELETE).perform()
+   print("HISTORY FLAG SILINDI")
+
+
+
+   find_buton= browser.find_element_by_id("maa8a5ebf-pb")
+   find_buton.click()
+   print("ARANIYOR..........45 SANIYE BEKLEYINIZ.......")
+
+
+
+   #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+   #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+   #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   time.sleep(45)
+
+
+   print("..........45 SANIYE BITTI.......")
+
+   #ariza_bas_buton= browser.find_element_by_xpath("//*[@id='m6a7dfd2f_tfrow_[C:12]_txt-tb']")
+   
+   #ariza_bas_buton.click()
+   print("Arıza Baslangıc Butonu Seciliyor............")
+
+
+   #ActionChains(browser).send_keys(gecmis_son).perform()
+   #print("Arıza Baslangıc Tarihi Yazıldı...............")
+   
+   #ActionChains(browser).send_keys(Keys.ENTER).perform()
+
+   print("ARANIYOR..........45 SANIYE BEKLEYINIZ.......")
+
+   
+   co=9
+   while co==9:
+       try:
+           kayit_sec=browser.find_element_by_xpath("//*[@id='m6a7dfd2f_tbod_ttselrows-ti']")
+           kayit_sec.click()
+           time.sleep(2)
+           print("Devam eden kayıtlar",'\n')
+           co=30
+       except (NoSuchElementException, ElementNotInteractableException):
+               print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+               
+               
+               time.sleep(5)
+       else:
+    
+               print("Doğrulama Döngüsü Hatasız Sona Erdi")
+
+
+   print("WAITINGE ALMA BAŞLANGICI")
+   
+
+   print("Kayıt Seçildi")
+   print("30 Saniye bekle............/n")                      
+   time.sleep(30)
+   print("30 Saniye beklendi............/n")    
+
+   cs=9
+   while cs==9:
+       try:
+           tum_sec= browser.find_element_by_xpath("//*[@id='m6a7dfd2f_ttrow_[C:0]_ttselallrows-ti_img']")                                           
+           tum_sec.click()
+           time.sleep(2)
+           print("Devam eden kayıtlar",'\n')
+           cs=30
+       except (NoSuchElementException, ElementNotInteractableException):
+               print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+               
+               
+               time.sleep(5)
+       else:
+    
+               print("Doğrulama Döngüsü Hatasız Sona Erdi")
+   
+
+
+   print("Tümü Seçildi")
+
+   print("20 Saniye bekle....../n")
+                                              
+   time.sleep(20)
+
+
+   ck=9
+   while ck==9:
+       try:
+           change_box=browser.find_element_by_xpath("//*[@id='toolactions_STATUS-tbb_anchor']") 
+           change_box.click()
+           time.sleep(3)
+           print("Değiştirme Seçeneğine Tıklandı",'\n')
+           time.sleep(2)
+           
+           ck=30
+       except (NoSuchElementException, ElementNotInteractableException):
+               print("ATLAS YAVAŞ 5 SANIYE BEKLEME UZADI")
+               
+               
+               time.sleep(5)
+       else:
+    
+               print("Doğrulama Döngüsü Hatasız Sona Erdi")
+
+   
+
+   waiting_buton= browser.find_element_by_xpath("//*[@id='m59225159-img']")
+   waiting_buton.click()
+   time.sleep(5)
+   
+   ActionChains(browser).send_keys(Keys.ENTER).perform()
+   print("Waiting Seçildi")
+   time.sleep(5)
+
+
+
+   okey_sec=browser.find_element_by_id("mdb5530cf-pb")
+   okey_sec.click()
+
+   print("Okey Seçildi")
+
+
+   time.sleep(15)
+
+   print("......GOREV BASARI ILE TAMAMLANDI......")
+
+
+ 
+def success():
+
+
+    print("░██████╗██╗░░░██╗░█████╗░░█████╗░███████╗░██████╗░██████╗███████╗██╗░░░██╗██╗░░░░░██╗░░░░░██╗░░░██╗")
+    print("██╔════╝██║░░░██║██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██╔════╝██║░░░██║██║░░░░░██║░░░░░╚██╗░██╔╝")
+    print("╚█████╗░██║░░░██║██║░░╚═╝██║░░╚═╝█████╗░░╚█████╗░╚█████╗░█████╗░░██║░░░██║██║░░░░░██║░░░░░░╚████╔╝░")
+    print("░╚═══██╗██║░░░██║██║░░██╗██║░░██╗██╔══╝░░░╚═══██╗░╚═══██╗██╔══╝░░██║░░░██║██║░░░░░██║░░░░░░░╚██╔╝░░")
+    print("██████╔╝╚██████╔╝╚█████╔╝╚█████╔╝███████╗██████╔╝██████╔╝██║░░░░░╚██████╔╝███████╗███████╗░░░██║░░░")
+    print("╚═════╝░░╚═════╝░░╚════╝░░╚════╝░╚══════╝╚═════╝░╚═════╝░╚═╝░░░░░░╚═════╝░╚══════╝╚══════╝░░░╚═╝░░░")
+
+    print("░█████╗░░█████╗░███╗░░░███╗██████╗░██╗░░░░░███████╗████████╗███████╗██████╗░")
+    print("██╔══██╗██╔══██╗████╗░████║██╔══██╗██║░░░░░██╔════╝╚══██╔══╝██╔════╝██╔══██╗")
+    print("██║░░╚═╝██║░░██║██╔████╔██║██████╔╝██║░░░░░█████╗░░░░░██║░░░█████╗░░██║░░██║")
+    print("██║░░██╗██║░░██║██║╚██╔╝██║██╔═══╝░██║░░░░░██╔══╝░░░░░██║░░░██╔══╝░░██║░░██║")
+    print("╚█████╔╝╚█████╔╝██║░╚═╝░██║██║░░░░░███████╗███████╗░░░██║░░░███████╗██████╔╝")
+    print("░╚════╝░░╚════╝░╚═╝░░░░░╚═╝╚═╝░░░░░╚══════╝╚══════╝░░░╚═╝░░░╚══════╝╚═════╝░")
+
+menu()
+
