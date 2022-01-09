@@ -1,0 +1,111 @@
+import time
+
+print("""
+[H]=======================================
+|                                        |
+|   █░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀      |
+|   ▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄      |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|                                        |
+|       ABDURRAHMAN EKICI                |
+|========================================|
+""")
+
+print("Merhaba Aylık Sunum için Kullanım Oranı Hesaplama Programına Hoşgeldiniz",'\n')
+time.sleep(2)
+print(" Program sunumdaki oranlara ve metin düzenine uygun metni sizin için oluşturmaya ve oranları görmenize yarar",'\n')
+
+ankara_2g=float(input("ANKARA AYLIK 2G TRAFIGINI GIRINIZ "))
+ankara_3g_cs=float(input("ANKARA AYLIK 3G CS TRAFIGINI GIRINIZ "))
+ankara_3g_ps=float(input("ANKARA AYLIK 3G PS TRAFIGINI GIRINIZ "))
+ankara_4g_data=float(input("ANKARA AYLIK 4G DATA TRAFIGINI GIRINIZ "))
+ankara_4g_volte=float(input("ANKARA AYLIK 4G VOLTE TRAFIGINI GIRINIZ "))
+
+tr_2g=float(input("ALLNETWORK AYLIK 2G TRAFIGINI GIRINIZ "))
+tr_3g_cs=float(input("ALLNETWORK AYLIK 3G CS TRAFIGINI GIRINIZ "))
+tr_3g_ps=float(input("ALLNETWORK AYLIK 3G PS TRAFIGINI GIRINIZ "))
+tr_4g_data=float(input("ALLNETWORK AYLIK 4G DATA TRAFIGINI GIRINIZ "))
+tr_4g_volte=float(input("ALLNETWORK AYLIK 4G VOLTE TRAFIGINI GIRINIZ "))
+
+ankara_toplam_konusma=      ankara_2g + ankara_3g_cs + ankara_4g_volte
+tr_toplam_konusma=          tr_2g + tr_3g_cs+ tr_4g_volte
+
+ankara_toplam_data=     ankara_3g_ps+ankara_4g_data
+tr_toplam_data=         tr_3g_ps + tr_4g_data
+
+ankara_2g_oran_toplam_konusma=      ankara_2g/ankara_toplam_konusma
+ankara_3g_cs_oran_toplam_konusma=   ankara_3g_cs/ankara_toplam_konusma
+ankara_4g_oran_toplam_konusma=      ankara_4g_volte/ankara_toplam_konusma
+
+ankara_3g_ps_oran_toplam_data=  ankara_3g_ps/ankara_toplam_data
+ankara_4g_oran_toplam_data=     ankara_4g_data/ankara_toplam_data
+
+ankara_2g_oran_tr_2g=       ankara_2g/tr_2g
+ankara_3g_cs_oran_tr_3g=    ankara_3g_cs/tr_3g_cs
+ankara_3g_ps_oran_tr_3g=    ankara_3g_ps/tr_3g_ps
+ankara_4g_data_oran_tr=     ankara_4g_data/tr_4g_data
+ankara_4g_volte_oran_tr=    ankara_4g_volte/tr_4g_data
+
+ankara_2g_oran_toplam_konusma=ankara_2g_oran_toplam_konusma*100
+ankara_2g_oran_toplam_konusma=round(ankara_2g_oran_toplam_konusma,1)
+
+ankara_2g_oran_tr_2g=ankara_2g_oran_tr_2g*100
+ankara_2g_oran_tr_2g=round(ankara_2g_oran_tr_2g,1)
+
+ankara_3g_cs_oran_toplam_konusma=ankara_3g_cs_oran_toplam_konusma*100
+ankara_3g_cs_oran_toplam_konusma=round(ankara_3g_cs_oran_toplam_konusma,1)
+
+ankara_3g_cs_oran_tr_3g=ankara_3g_cs_oran_tr_3g*100
+ankara_3g_cs_oran_tr_3g=round(ankara_3g_cs_oran_tr_3g,1)
+
+ankara_3g_ps_oran_toplam_data=ankara_3g_ps_oran_toplam_data*100
+ankara_3g_ps_oran_toplam_data=round(ankara_3g_ps_oran_toplam_data,1)
+
+ankara_3g_ps_oran_tr_3g=ankara_3g_ps_oran_tr_3g*100
+ankara_3g_ps_oran_tr_3g=round(ankara_3g_ps_oran_tr_3g,1)
+
+ankara_4g_oran_toplam_konusma=ankara_4g_oran_toplam_konusma*100
+ankara_4g_oran_toplam_konusma=round(ankara_4g_oran_toplam_konusma,1)
+
+ankara_4g_volte_oran_tr=ankara_4g_volte_oran_tr*100
+ankara_4g_volte_oran_tr=round(ankara_4g_volte_oran_tr,1)
+
+ankara_4g_oran_toplam_data=ankara_4g_oran_toplam_data*100
+ankara_4g_oran_toplam_data=round(ankara_4g_oran_toplam_data,1)
+
+ankara_4g_data_oran_tr=ankara_4g_data_oran_tr*100
+ankara_4g_data_oran_tr=round(ankara_4g_data_oran_tr,1)
+
+
+
+print("Metin Bilgisi: ", '\n')
+
+print("Ankara Bölge' deki toplam ses trafiğinin %",ankara_2g_oran_toplam_konusma, "2G tarafından karşılanmaktadır")
+print("Ankara Bölge' deki 2G ses trafiği tüm Türkiye' nin %",ankara_2g_oran_tr_2g, " lik kısmına ne denk gelmektedir")
+
+print("Ankara Bölge' deki toplam ses trafiğinin %",ankara_3g_cs_oran_toplam_konusma, "3G tarafından karşılanmaktadır")
+print("Ankara Bölge' deki 3G CS ses trafiği tüm Türkiye' nin %",ankara_3g_cs_oran_tr_3g, " lik kısmına denk gelmektedir")
+
+print("Ankara Bölge' deki toplam ses trafiğinin %",ankara_3g_ps_oran_toplam_data, "3G tarafından karşılanmaktadır")
+print("Ankara Bölge' deki 3G PS ses trafiği tüm Türkiye' nin %",ankara_3g_ps_oran_tr_3g, " lik kısmına denk gelmektedir")
+
+print("Ankara Bölge' deki toplam ses trafiğinin %",ankara_4g_oran_toplam_konusma, "LTE VOLTE tarafından karşılanmaktadır")
+print("Ankara Bölge' deki LTE VOLTE ses trafiği tüm Türkiye' nin %",ankara_4g_volte_oran_tr, " lik kısmına denk gelmektedir")
+
+
+print("Ankara Bölge' deki toplam ses trafiğinin %",ankara_4g_oran_toplam_data, "LTE Data tarafından karşılanmaktadır")
+print("Ankara Bölge' deki LTE Data ses trafiği tüm Türkiye' nin %",ankara_4g_data_oran_tr, " lik kısmına denk gelmektedir",'\n')
+
+print("İşlem tamamlandı")
+
+print("Çıkış yapmak için X'e basınız ")
+
+cikis=input()
+
+if cikis=='x' or cikis=='X':
+        SystemExit()
